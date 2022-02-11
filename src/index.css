@@ -6,3 +6,22 @@ body {
   font: 16px Roboto, sans-serif;
   line-height: 1.2em;
 }
+
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  box-shadow: none;
+  outline: none;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
