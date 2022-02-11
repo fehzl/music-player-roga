@@ -1,3 +1,8 @@
 .App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 100wh;
   padding: 1rem;
 }
