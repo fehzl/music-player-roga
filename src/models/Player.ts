@@ -19,7 +19,6 @@ export class Player implements PlayerType {
   }
 
   public set albumIndex(index: number) {
-    console.log('called set albumIndex with:', index);
     if(index && index < this.playlist.albums.length) {
       this._albumIndex = index;
     } else {
