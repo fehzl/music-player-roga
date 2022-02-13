@@ -1,29 +1,54 @@
-import { html } from "~/utils";
-import "./Album.css";
+import { Player as PlayerModel } from '~/models/Player';
+import { html, mounted } from '~/utils';
+import { playAudio } from '~/utils/audio';
+import './Album.css';
 
 interface AlbumProps {
   album: AlbumData;
+  player: PlayerModel;
+  audio: HTMLAudioElement;
+  albumIndex: number;
 }
 
-export function Album({ album }: AlbumProps) {
+export function Album({ album, player, audio, albumIndex }: AlbumProps) {
+  mounted(() => {
+    const tracks = document.querySelectorAll<HTMLButtonElement>(
+      '.album-tracks--track'
+    );
+
+    tracks.forEach((track) => {
+      track.addEventListener('click', () => {
+        player.trackIndex = Number(track.dataset.index) || 0;
+        player.albumIndex = Number(track.dataset.albumIndex) || 0;
+        playAudio({ player, audio });
+      });
+    });
+  });
+
   return html`
     <div class="album-wrapper">
       <div class="album-header">
-        <img src="${album.cover}" width="92px" height="92px" alt="Album">
+        <img src="${album.cover}" width="92px" height="92px" alt="Album" />
         <div class="album-header--album-info">
           <h1 class="album-header--title">${album.title}</h1>
           <h2 class="album-header--subtitle">${album.artist}</h2>
         </div>
       </div>
-      <ul class="album-tracks">
-        ${album.tracks.map((track, index) => {
-          return html`
-            <li class="album-tracks--track">
-              <span>${index + 1}. ${track.title}</span>
-            </li>
-          `;
-        }).join('')}
-      </ul>
+      <div class="album-tracks">
+        ${album.tracks
+          .map((track, index) => {
+            return html`
+              <button
+                class="album-tracks--track"
+                data-index=${index}
+                data-album-index=${albumIndex}
+              >
+                <span>${index + 1}. ${track.title}</span>
+              </button>
+            `;
+          })
+          .join('')}
+      </div>
     </div>
   `;
 }

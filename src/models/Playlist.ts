@@ -1,4 +1,4 @@
-import { Album } from "./Album";
+import { Album } from './Album';
 
 export class Playlist implements PlaylistType {
   readonly albums: AlbumType[];
