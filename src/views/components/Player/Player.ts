@@ -34,7 +34,7 @@ export function Player({ player, audio }: PlayerProps) {
     });
 
     nextButton?.addEventListener('click', () => {
-      player.prevTrack();
+      player.nextTrack();
       playAudio({ player, audio });
     });
   });
