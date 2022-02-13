@@ -16,8 +16,10 @@ export function Album({ album, player, audio, albumIndex }: AlbumProps) {
       '.album-tracks--track'
     );
 
-    tracks.forEach((track) => {
-      track.addEventListener('click', () => {
+    tracks?.forEach((track) => {
+      track?.addEventListener('click', () => {
+        console.log(track.dataset)
+        player.playing = true;
         player.trackIndex = Number(track.dataset.index) || 0;
         player.albumIndex = Number(track.dataset.albumIndex) || 0;
         playAudio({ player, audio });

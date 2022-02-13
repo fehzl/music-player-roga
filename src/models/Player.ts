@@ -30,6 +30,8 @@ export class Player implements PlayerType {
   public set trackIndex(index: number) {
     if (index && index < this.playlist.albums[this._albumIndex].tracks.length) {
       this._trackIndex = index;
+    } else {
+      this._trackIndex = 0;
     }
     this._trackIndex = this.trackIndex;
   }
@@ -67,7 +69,7 @@ export class Player implements PlayerType {
     }
 
     this.album = this.playlist.albums[this._albumIndex];
-    this.trackUrl = this.album.getUrlFromIndex(this._trackIndex);
+    this.trackUrl = this.album.getUrlFromIndex(this._trackIndex) || '';
   }
 
   prevTrack(): void {
