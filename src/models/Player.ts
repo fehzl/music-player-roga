@@ -1,5 +1,5 @@
-import { Album } from "./Album";
-import { Playlist } from "./Playlist";
+import { Album } from './Album';
+import { Playlist } from './Playlist';
 
 export class Player implements PlayerType {
   album: AlbumType | null;
@@ -8,27 +8,27 @@ export class Player implements PlayerType {
   trackUrl: string | null;
   _albumIndex: number;
   _trackIndex: number;
-  
+
   constructor() {
     this.album = new Album({} as AlbumData);
     this.playlist = new Playlist();
     this.trackUrl = null;
-    this.playing = false
+    this.playing = false;
     this._albumIndex = 0;
     this._trackIndex = 0;
   }
 
   public set albumIndex(index: number) {
-    if(index && index < this.playlist.albums.length) {
+    if (index && index < this.playlist.albums.length) {
       this._albumIndex = index;
     } else {
       this._albumIndex = 0;
     }
     this._albumIndex = this.albumIndex;
   }
-  
+
   public set trackIndex(index: number) {
-    if(index && index < this.playlist.albums[this._albumIndex].tracks.length) {
+    if (index && index < this.playlist.albums[this._albumIndex].tracks.length) {
       this._trackIndex = index;
     }
     this._trackIndex = this.trackIndex;
@@ -53,8 +53,8 @@ export class Player implements PlayerType {
   }
 
   nextTrack(): void {
-    if(this.album?.isLastTrack(this._trackIndex)) {
-      if(this.playlist.isLastAlbum(this._albumIndex)) {
+    if (this.album?.isLastTrack(this._trackIndex)) {
+      if (this.playlist.isLastAlbum(this._albumIndex)) {
         this._albumIndex = 0;
       } else {
         this._albumIndex++;
@@ -71,8 +71,8 @@ export class Player implements PlayerType {
   }
 
   prevTrack(): void {
-    if(this.album?.isFirstTrack(this._trackIndex)) {
-      if(this.playlist.isFirstAlbum(this._albumIndex)) {
+    if (this.album?.isFirstTrack(this._trackIndex)) {
+      if (this.playlist.isFirstAlbum(this._albumIndex)) {
         this._albumIndex = this.playlist.albums.length - 1;
       } else {
         this._albumIndex--;
