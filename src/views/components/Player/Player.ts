@@ -13,6 +13,12 @@ export function Player({ player, audio }: PlayerProps) {
     const prevButton = document.querySelector('.player-controls--prev');
     const playButton = document.querySelector('.player-controls--play');
     const nextButton = document.querySelector('.player-controls--next');
+    const progress = document.querySelector<HTMLElement>('.player-progress');
+
+    progress?.addEventListener('click', (e: MouseEvent) => {
+      const progressWidth = (e.offsetX / progress.offsetWidth) * 100;
+      audio.currentTime = (progressWidth / 100) * audio.duration;
+    });
 
     prevButton?.addEventListener('click', () => {
       player.prevTrack();
