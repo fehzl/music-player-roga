@@ -11,6 +11,23 @@ export async function playAudio({ player, audio }: PlayAudioProps) {
     document.getElementById('player-controls--play')
   );
 
+  const currentTrack = document.querySelector(
+    `#album-${player.albumIndex}  #track-${player.trackIndex}`
+  );
+
+  // remove active class from all tracks and add it to the current track
+  const tracks = document.querySelectorAll('.album-tracks--track');
+  tracks.forEach((track) => {
+    track.classList.remove('active');
+  });
+  currentTrack?.classList.add('active');
+
+
+  if (currentTrack) {
+    currentTrack.classList.add('active');
+  }
+
+
   playButton!.src = '/img/pause.svg';
 
   if (player.trackUrl && player.trackUrl !== audio.src) {

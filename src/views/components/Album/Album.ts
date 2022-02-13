@@ -26,7 +26,7 @@ export function Album({ album, player, audio, albumIndex }: AlbumProps) {
   });
 
   return html`
-    <div class="album-wrapper">
+    <div class="album-wrapper" id="album-${albumIndex}">
       <div class="album-header">
         <img src="${album.cover}" width="92px" height="92px" alt="Album" />
         <div class="album-header--album-info">
@@ -40,10 +40,11 @@ export function Album({ album, player, audio, albumIndex }: AlbumProps) {
             return html`
               <button
                 class="album-tracks--track"
+                id="track-${index}"
                 data-index=${index}
                 data-album-index=${albumIndex}
               >
-                <span>${index + 1}. ${track.title}</span>
+                <span>${String(index + 1).padStart(2, '0')}. ${track.title}</span>
               </button>
             `;
           })
