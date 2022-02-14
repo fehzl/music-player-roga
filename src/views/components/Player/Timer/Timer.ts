@@ -8,8 +8,8 @@ interface TimerProps {
 export function Timer({ audio }: TimerProps) {
   mounted(function () {
     audio.ontimeupdate = () => {
-      innerHTMLByClass('.player-progress--time--current', ssToMMss(audio.currentTime));
-      innerHTMLByClass('.player-progress--time--total', ssToMMss(audio.duration));
+      innerHTMLByClass('.player-progress--time--current', ssToMMss(audio.currentTime) === "NaN:NaN" ? "00:00" : ssToMMss(audio.currentTime));
+      innerHTMLByClass('.player-progress--time--total', ssToMMss(audio.duration) === "NaN:NaN" ? "00:00" : ssToMMss(audio.duration));
       
       setElementStyleByClass('.player-progress--marker', 'left', `${(audio.currentTime / audio.duration) * 100}%`);
       setElementStyleByClass('.player-progress--bar', 'width', `${(audio.currentTime / audio.duration) * 100}%`);
@@ -23,8 +23,8 @@ export function Timer({ audio }: TimerProps) {
         <div class="player-progress--marker"></div>
       </div>
       <div class="player-progress--time">
-        <span class="player-progress--time--current">0:00</span>
-        <span class="player-progress--time--total">0:00</span>
+        <span class="player-progress--time--current">00:00</span>
+        <span class="player-progress--time--total">00:00</span>
       </div>
     </div>
   `
