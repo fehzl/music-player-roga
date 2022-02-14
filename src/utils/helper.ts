@@ -2,6 +2,10 @@ export function getHTMLElementByClass(selector: string): HTMLElement | null {
   return document.querySelector(selector) || null;
 }
 
+export function getAllHTMLElementsByClass(selector: string): HTMLElement[] {
+  return Array.from(document.querySelectorAll(selector));
+}
+
 export function getElementById(id: string): HTMLElement | null {
   return document.getElementById(id) || null;
 }
