@@ -21,12 +21,16 @@ export function App() {
 
   return html`
     <div class="App">
+      <div class="albums">
       ${player.playlist.albums
         .map((album, albumIndex) => {
           return Album({ album, player, audio, albumIndex });
         })
         .join('')}
-      ${PlayerMenu({ player, audio })}
+      </div>
+      <div class="player">
+        ${PlayerMenu({ player, audio })}
+      </div>
     </div>
   `;
 }
