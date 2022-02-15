@@ -14,6 +14,7 @@ export function App() {
   const player = new Player();
   const albums = getAlbums();
   const audio = new Audio();
+  audio.src = albums[0].tracks[0].url;
 
   albums.map((album) => {
     player.playlist.addAlbum(album);
