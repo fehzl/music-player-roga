@@ -6,8 +6,6 @@ interface PlayAudioProps {
 }
 
 export async function playAudio({ player, audio }: PlayAudioProps) {
-  console.log(audio)
-  console.log(player)
   const playingNow = document.querySelector('.player-controls--info p');
   const playButton = <HTMLImageElement>(
     document.getElementById('player-controls--play')
