@@ -40,9 +40,23 @@ export function ssToMMss(seconds: number): string {
   return `${min}:${sec}`
 }
 
+export function changeImageElementSrc(element: string, src: string): void {
+  const el = <HTMLImageElement>document.getElementById(element);
+  el!.src = src || '';
+}
+
 export function jumpLineBeforeLastWord(line: string): string {
   const words = line.split(' ');
   const lastWord = words[words.length - 1];
   const beforeLastWord = words[words.length - 2];
   return `${beforeLastWord}<br/> ${lastWord}`;
+}
+
+export function addActiveClassToCurrentTrack(queryToRemove: string, queryToAdd: string): void {
+  const toRemove = getAllHTMLElementsByClass(queryToRemove);
+  const toAdd = getHTMLElementByClass(queryToAdd);
+  toRemove.forEach((track: HTMLElement)  => {
+    track.classList.remove('active');
+  });
+  toAdd?.classList.add('active');
 }
