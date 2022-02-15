@@ -1,33 +1,33 @@
-export function getHTMLElementByClass(selector: string): HTMLElement | null {
-  return document.querySelector(selector) || null;
+export function getHTMLElementByQuery(query: string): HTMLElement | null {
+  return document.querySelector(query) || null;
 }
 
-export function getAllHTMLElementsByClass(selector: string): HTMLElement[] {
-  return Array.from(document.querySelectorAll(selector));
+export function getAllHTMLElementsByQuery(query: string): HTMLElement[] {
+  return Array.from(document.querySelectorAll(query));
 }
 
 export function getElementById(id: string): HTMLElement | null {
   return document.getElementById(id) || null;
 }
 
-export function addEventListenerByClass(element: string, event: string, callback: (e: any) => void) {
-  const el = getHTMLElementByClass(element);
-  el?.addEventListener(event, callback);
+export function addEventListenerByQuery(query: string, event: string, callback: (e: any) => void) {
+  const element = getHTMLElementByQuery(query);
+  element?.addEventListener(event, callback);
 }
 
-export function getElementWidthByClass(element: string): number {
-  const el = getHTMLElementByClass(element);
-  return el?.offsetWidth || 0;
+export function getElementWidthByQuery(query: string): number {
+  const element = getHTMLElementByQuery(query);
+  return element?.offsetWidth || 0;
 }
 
-export function innerHTMLByClass(element: string, html: string): void {
-  const el = getHTMLElementByClass(element);
-  el!.innerHTML = html || '';
+export function innerHTMLByQuery(query: string, html: string): void {
+  const element = getHTMLElementByQuery(query);
+  element!.innerHTML = html || '';
 }
 
-export function setElementStyleByClass(element: string, style: string, value: string): void {
-  const el = getHTMLElementByClass(element);
-  el?.style.setProperty(style, value);
+export function setElementStyleByQuery(query: string, style: string, value: string): void {
+  const element = getHTMLElementByQuery(query);
+  element?.style.setProperty(style, value);
 }
 
 export function ssToMMss(seconds: number): string {
@@ -40,21 +40,21 @@ export function ssToMMss(seconds: number): string {
   return `${min}:${sec}`
 }
 
-export function changeImageElementSrc(element: string, src: string): void {
-  const el = <HTMLImageElement>document.getElementById(element);
-  el!.src = src || '';
+export function changeImageElementSrc(id: string, src: string): void {
+  const element = <HTMLImageElement>document.getElementById(id);
+  element!.src = src || '';
 }
 
-export function jumpLineBeforeLastWord(line: string): string {
-  const words = line.split(' ');
+export function jumpLineBeforeLastWord(sentence: string): string {
+  const words = sentence.split(' ');
   const lastWord = words[words.length - 1];
   const beforeLastWord = words[words.length - 2];
   return `${beforeLastWord}<br/> ${lastWord}`;
 }
 
 export function addActiveClassToCurrentTrack(queryToRemove: string, queryToAdd: string): void {
-  const toRemove = getAllHTMLElementsByClass(queryToRemove);
-  const toAdd = getHTMLElementByClass(queryToAdd);
+  const toRemove = getAllHTMLElementsByQuery(queryToRemove);
+  const toAdd = getHTMLElementByQuery(queryToAdd);
   toRemove.forEach((track: HTMLElement)  => {
     track.classList.remove('active');
   });

@@ -1,7 +1,7 @@
 import { Player as PlayerModel } from '~/models/Player';
 import { html, mounted } from '~/utils';
 import { pauseAudio, playAudio } from '~/utils/audio';
-import { addEventListenerByClass, getElementWidthByClass } from '~/utils/helpers';
+import { addEventListenerByQuery, getElementWidthByQuery } from '~/utils/helpers';
 import './Player.css';
 import { Timer } from './Timer/Timer';
 
@@ -12,12 +12,12 @@ interface PlayerProps {
 
 export function Player({ player, audio }: PlayerProps) {
   mounted(function () {
-    addEventListenerByClass('.player-controls--prev', 'click', () => {
+    addEventListenerByQuery('.player-controls--prev', 'click', () => {
       player.prevTrack();
       playAudio({ player, audio });
     });
 
-    addEventListenerByClass('.player-controls--play', 'click', () => {
+    addEventListenerByQuery('.player-controls--play', 'click', () => {
       if (!player.playing) {
         playAudio({ player, audio });
       } else {
@@ -25,13 +25,13 @@ export function Player({ player, audio }: PlayerProps) {
       }
     });
 
-    addEventListenerByClass('.player-controls--next', 'click', () => {
+    addEventListenerByQuery('.player-controls--next', 'click', () => {
       player.nextTrack();
       playAudio({ player, audio });
     });
 
-    addEventListenerByClass('.player-progress', 'click', (e: MouseEvent) => {
-      const elementWidth = getElementWidthByClass('.player-progress');
+    addEventListenerByQuery('.player-progress', 'click', (e: MouseEvent) => {
+      const elementWidth = getElementWidthByQuery('.player-progress');
       const progressWidth = (e.offsetX / elementWidth) * 100;
       audio.currentTime = (progressWidth / 100) * audio.duration;
     });

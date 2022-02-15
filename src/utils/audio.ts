@@ -1,5 +1,5 @@
 import { Player as PlayerModel } from '~/models/Player';
-import { addActiveClassToCurrentTrack, changeImageElementSrc, innerHTMLByClass } from './helpers';
+import { addActiveClassToCurrentTrack, changeImageElementSrc, innerHTMLByQuery } from './helpers';
 
 interface PlayAudioProps {
   player: PlayerModel;
@@ -16,7 +16,7 @@ export async function playAudio({ player, audio }: PlayAudioProps) {
   audio.play();
   player.play();
 
-  innerHTMLByClass('.player-controls--info p', 
+  innerHTMLByQuery('.player-controls--info p', 
   `${player.album?.tracks[player.trackIndex].title} - 
    ${player.album?.artist}`
   );

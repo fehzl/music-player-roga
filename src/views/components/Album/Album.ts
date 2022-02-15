@@ -1,7 +1,7 @@
 import { Player as PlayerModel } from '~/models/Player';
 import { html, mounted } from '~/utils';
 import { playAudio } from '~/utils/audio';
-import { getAllHTMLElementsByClass, jumpLineBeforeLastWord } from '~/utils/helpers';
+import { getAllHTMLElementsByQuery, jumpLineBeforeLastWord } from '~/utils/helpers';
 import './Album.css';
 
 interface AlbumProps {
@@ -13,7 +13,7 @@ interface AlbumProps {
 
 export function Album({ album, player, audio, albumIndex }: AlbumProps) {
   mounted(() => {
-    getAllHTMLElementsByClass('.album-tracks--track').forEach((el: HTMLElement) => {
+    getAllHTMLElementsByQuery('.album-tracks--track').forEach((el: HTMLElement) => {
       el.addEventListener('click', () => {
         player.playing = true;
         player.trackIndex = Number(el.dataset.index) || 0;
