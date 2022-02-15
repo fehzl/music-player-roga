@@ -1,7 +1,10 @@
 import { Player as PlayerModel } from '~/models/Player';
 import { html, mounted } from '~/utils';
 import { pauseAudio, playAudio } from '~/utils/audio';
-import { addEventListenerByQuery, getElementWidthByQuery } from '~/utils/helpers';
+import {
+  addEventListenerByQuery,
+  getElementWidthByQuery,
+} from '~/utils/helpers';
 import './Player.css';
 import { Timer } from './Timer/Timer';
 

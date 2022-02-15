@@ -10,7 +10,11 @@ export function getElementById(id: string): HTMLElement | null {
   return document.getElementById(id) || null;
 }
 
-export function addEventListenerByQuery(query: string, event: string, callback: (e: any) => void) {
+export function addEventListenerByQuery(
+  query: string,
+  event: string,
+  callback: (e: any) => void
+) {
   const element = getHTMLElementByQuery(query);
   element?.addEventListener(event, callback);
 }
@@ -25,7 +29,11 @@ export function innerHTMLByQuery(query: string, html: string): void {
   element!.innerHTML = html || '';
 }
 
-export function setElementStyleByQuery(query: string, style: string, value: string): void {
+export function setElementStyleByQuery(
+  query: string,
+  style: string,
+  value: string
+): void {
   const element = getHTMLElementByQuery(query);
   element?.style.setProperty(style, value);
 }
@@ -37,7 +45,7 @@ export function ssToMMss(seconds: number): string {
   if (min < 10) min = '0' + min;
   if (sec < 10) sec = '0' + sec;
 
-  return `${min}:${sec}`
+  return `${min}:${sec}`;
 }
 
 export function changeImageElementSrc(id: string, src: string): void {
@@ -52,10 +60,13 @@ export function jumpLineBeforeLastWord(sentence: string): string {
   return `${beforeLastWord}<br/> ${lastWord}`;
 }
 
-export function addActiveClassToCurrentTrack(queryToRemove: string, queryToAdd: string): void {
+export function addActiveClassToCurrentTrack(
+  queryToRemove: string,
+  queryToAdd: string
+): void {
   const toRemove = getAllHTMLElementsByQuery(queryToRemove);
   const toAdd = getHTMLElementByQuery(queryToAdd);
-  toRemove.forEach((track: HTMLElement)  => {
+  toRemove.forEach((track: HTMLElement) => {
     track.classList.remove('active');
   });
   toAdd?.classList.add('active');

@@ -1,6 +1,10 @@
-import { html, mounted } from "~/utils";
-import { innerHTMLByQuery, setElementStyleByQuery, ssToMMss } from '~/utils/helpers';
-import "./Timer.css";
+import { html, mounted } from '~/utils';
+import {
+  innerHTMLByQuery,
+  setElementStyleByQuery,
+  ssToMMss,
+} from '~/utils/helpers';
+import './Timer.css';
 
 interface TimerProps {
   audio: HTMLAudioElement;
@@ -9,11 +13,29 @@ interface TimerProps {
 export function Timer({ audio }: TimerProps) {
   mounted(function () {
     audio.ontimeupdate = () => {
-      innerHTMLByQuery('.player-progress--time--current', ssToMMss(audio.currentTime) === "NaN:NaN" ? "00:00" : ssToMMss(audio.currentTime));
-      innerHTMLByQuery('.player-progress--time--total', ssToMMss(audio.duration) === "NaN:NaN" ? "00:00" : ssToMMss(audio.duration));
-      
-      setElementStyleByQuery('.player-progress--marker', 'left', `calc(${(audio.currentTime / audio.duration) * 100}% - 4px)`);
-      setElementStyleByQuery('.player-progress--bar', 'width', `calc(${(audio.currentTime / audio.duration) * 100}% + 4px)`);
+      innerHTMLByQuery(
+        '.player-progress--time--current',
+        ssToMMss(audio.currentTime) === 'NaN:NaN'
+          ? '00:00'
+          : ssToMMss(audio.currentTime)
+      );
+      innerHTMLByQuery(
+        '.player-progress--time--total',
+        ssToMMss(audio.duration) === 'NaN:NaN'
+          ? '00:00'
+          : ssToMMss(audio.duration)
+      );
+
+      setElementStyleByQuery(
+        '.player-progress--marker',
+        'left',
+        `calc(${(audio.currentTime / audio.duration) * 100}% - 4px)`
+      );
+      setElementStyleByQuery(
+        '.player-progress--bar',
+        'width',
+        `calc(${(audio.currentTime / audio.duration) * 100}% + 4px)`
+      );
     };
   });
 
@@ -28,5 +50,5 @@ export function Timer({ audio }: TimerProps) {
         <span class="player-progress--time--total">00:00</span>
       </div>
     </div>
-  `
+  `;
 }

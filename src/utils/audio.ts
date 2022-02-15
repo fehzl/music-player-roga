@@ -1,5 +1,9 @@
 import { Player as PlayerModel } from '~/models/Player';
-import { addActiveClassToCurrentTrack, changeImageElementSrc, innerHTMLByQuery } from './helpers';
+import {
+  addActiveClassToCurrentTrack,
+  changeImageElementSrc,
+  innerHTMLByQuery,
+} from './helpers';
 
 interface PlayAudioProps {
   player: PlayerModel;
@@ -7,24 +11,29 @@ interface PlayAudioProps {
 }
 
 export async function playAudio({ player, audio }: PlayAudioProps) {
-  if (player.trackUrl && player.trackUrl !== audio.src) audio.src = player.trackUrl;
-  
+  if (player.trackUrl && player.trackUrl !== audio.src)
+    audio.src = player.trackUrl;
+
   changeImageElementSrc('player-controls--play', '/img/pause.svg');
-  
-  addActiveClassToCurrentTrack('.album-tracks--track', `#album-${player.albumIndex} #track-${player.trackIndex}`)
+
+  addActiveClassToCurrentTrack(
+    '.album-tracks--track',
+    `#album-${player.albumIndex} #track-${player.trackIndex}`
+  );
 
   audio.play();
   player.play();
 
-  innerHTMLByQuery('.player-controls--info p', 
-  `${player.album?.tracks[player.trackIndex].title} - 
+  innerHTMLByQuery(
+    '.player-controls--info p',
+    `${player.album?.tracks[player.trackIndex].title} - 
    ${player.album?.artist}`
   );
 }
 
 export function pauseAudio({ player, audio }: PlayAudioProps) {
   changeImageElementSrc('player-controls--play', '/img/play.svg');
-  
+
   audio.pause();
   player.pause();
 }

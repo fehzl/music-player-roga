@@ -14,7 +14,7 @@ export function App() {
   const player = new Player();
   const albums = getAlbums();
   const audio = new Audio();
-  if(!audio.src) audio.src = albums[0].tracks[0].url;
+  if (!audio.src) audio.src = albums[0].tracks[0].url;
 
   albums.map((album) => {
     player.playlist.addAlbum(album);
@@ -23,15 +23,13 @@ export function App() {
   return html`
     <div class="App">
       <div class="albums">
-      ${player.playlist.albums
-        .map((album, albumIndex) => {
-          return Album({ album, player, audio, albumIndex });
-        })
-        .join('')}
+        ${player.playlist.albums
+          .map((album, albumIndex) => {
+            return Album({ album, player, audio, albumIndex });
+          })
+          .join('')}
       </div>
-      <div class="player">
-        ${PlayerMenu({ player, audio })}
-      </div>
+      <div class="player">${PlayerMenu({ player, audio })}</div>
     </div>
   `;
 }
