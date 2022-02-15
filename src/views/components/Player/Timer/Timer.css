@@ -1,0 +1,42 @@
+.player-progress {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 250px;
+}
+
+.player-progress--progress {
+  width: 100%;
+  height: 8px;
+  margin-bottom: 8px;
+  background-color: #c2c2c2;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.player-progress--marker {
+  width: 12px;
+  height: 12px;
+  background-color: #999999;
+  border-radius: 50%;
+  top: -2px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.player-progress--time {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.player-progress--bar {
+  width: 0;
+  height: 8px;
+  margin-bottom: 8px;
+  background-color: #3525e6;
+  border-radius: 4px;
+  cursor: pointer;
+}
