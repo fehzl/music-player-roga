@@ -3,10 +3,21 @@
   border-radius: 4px;
   padding: 16px;
   border: 1px solid rgba(0, 0, 0, 0.25);
-  max-width: 500px;
+  max-width: 33%;
   width: 100%;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
+
+@media (max-width: 991px) {
+  .album-wrapper {
+    max-width: calc(100% - 32px);
+  }
+}
+
 
 .album-header {
   display: flex;
@@ -32,10 +43,7 @@
 }
 
 .album-tracks {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 8px;
+  padding: 16px 0;
 }
 
 .album-tracks--track {
