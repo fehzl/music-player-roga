@@ -44,7 +44,7 @@ export function Player({ player, audio }: PlayerProps) {
 
   return html` <div class="player-wrapper">
     <div class="player-controls--info">
-      <p>Selecione uma música</p>
+      <p></p>
     </div>
     ${Timer({ audio })}
     <div class="player-controls">
