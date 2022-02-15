@@ -39,3 +39,10 @@ export function ssToMMss(seconds: number): string {
 
   return `${min}:${sec}`
 }
+
+export function jumpLineBeforeLastWord(line: string): string {
+  const words = line.split(' ');
+  const lastWord = words[words.length - 1];
+  const beforeLastWord = words[words.length - 2];
+  return `${beforeLastWord}<br/> ${lastWord}`;
+}
