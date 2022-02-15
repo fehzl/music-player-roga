@@ -1,7 +1,7 @@
 import { Player as PlayerModel } from '~/models/Player';
 import { html, mounted } from '~/utils';
 import { playAudio } from '~/utils/audio';
-import { getAllHTMLElementsByClass, jumpLineBeforeLastWord } from '~/utils/helper';
+import { getAllHTMLElementsByClass, jumpLineBeforeLastWord } from '~/utils/helpers';
 import './Album.css';
 
 interface AlbumProps {

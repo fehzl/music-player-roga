@@ -1,5 +1,5 @@
 import { html, mounted } from "~/utils";
-import { innerHTMLByClass, setElementStyleByClass, ssToMMss } from '~/utils/helper';
+import { innerHTMLByClass, setElementStyleByClass, ssToMMss } from '~/utils/helpers';
 import "./Timer.css";
 
 interface TimerProps {

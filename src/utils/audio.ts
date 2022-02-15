@@ -1,5 +1,5 @@
 import { Player as PlayerModel } from '~/models/Player';
-import { addActiveClassToCurrentTrack, changeImageElementSrc, innerHTMLByClass } from './helper';
+import { addActiveClassToCurrentTrack, changeImageElementSrc, innerHTMLByClass } from './helpers';
 
 interface PlayAudioProps {
   player: PlayerModel;
