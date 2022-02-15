@@ -1,7 +1,7 @@
 import { Player as PlayerModel } from '~/models/Player';
 import { html, mounted } from '~/utils';
 import { playAudio } from '~/utils/audio';
-import { getAllHTMLElementsByClass } from '~/utils/helper';
+import { getAllHTMLElementsByClass, jumpLineBeforeLastWord } from '~/utils/helper';
 import './Album.css';
 
 interface AlbumProps {
@@ -24,11 +24,11 @@ export function Album({ album, player, audio, albumIndex }: AlbumProps) {
   });
 
   return html`
-    <div class="album-wrapper" id="album-${albumIndex}">
+    <section class="album-wrapper" id="album-${albumIndex}">
       <div class="album-header">
-        <img src="${album.cover}" width="92px" height="92px" alt="Album" />
+        <img src="${album.cover}" width="92px" height="92px" alt="Álbum ${album.title} de ${album.artist}" />
         <div class="album-header--album-info">
-          <h1 class="album-header--title">${album.title}</h1>
+          <h1 class="album-header--title">${jumpLineBeforeLastWord(album.title)}</h1>
           <h2 class="album-header--subtitle">${album.artist}</h2>
         </div>
       </div>
@@ -48,6 +48,6 @@ export function Album({ album, player, audio, albumIndex }: AlbumProps) {
           })
           .join('')}
       </div>
-    </div>
+    </section>
   `;
 }
