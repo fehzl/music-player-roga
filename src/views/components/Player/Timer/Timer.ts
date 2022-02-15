@@ -12,7 +12,7 @@ export function Timer({ audio }: TimerProps) {
       innerHTMLByClass('.player-progress--time--current', ssToMMss(audio.currentTime) === "NaN:NaN" ? "00:00" : ssToMMss(audio.currentTime));
       innerHTMLByClass('.player-progress--time--total', ssToMMss(audio.duration) === "NaN:NaN" ? "00:00" : ssToMMss(audio.duration));
       
-      setElementStyleByClass('.player-progress--marker', 'left', `${(audio.currentTime / audio.duration) * 100}%`);
+      setElementStyleByClass('.player-progress--marker', 'left', `calc(${(audio.currentTime / audio.duration) * 100}% - 4px)`);
       setElementStyleByClass('.player-progress--bar', 'width', `calc(${(audio.currentTime / audio.duration) * 100}% + 4px)`);
     };
   });
