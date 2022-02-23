@@ -54,39 +54,29 @@ export class Player implements PlayerType {
     this.playing = false;
   }
 
+  nextAlbum(): void {
+    this.playlist.isLastAlbum(this._albumIndex)
+      ? (this._albumIndex = 0)
+      : this._albumIndex++;
+    this._trackIndex = 0;
+  }
+
   nextTrack(): void {
-    if (this.album?.isLastTrack(this._trackIndex)) {
-      if (this.playlist.isLastAlbum(this._albumIndex)) {
-        this._albumIndex = 0;
-      } else {
-        this._albumIndex++;
-      }
+    this.album?.isLastTrack(this._trackIndex)
+      ? this.nextAlbum()
+      : this._trackIndex++;
+  }
 
-      this.album = this.playlist.albums[this._albumIndex];
-      this._trackIndex = 0;
-    } else {
-      this._trackIndex++;
-    }
-
-    this.album = this.playlist.albums[this._albumIndex];
-    this.trackUrl = this.album.getUrlFromIndex(this._trackIndex) || '';
+  prevAlbum(): void {
+    this.playlist.isFirstAlbum(this._albumIndex)
+      ? (this._albumIndex = this.playlist.albums.length - 1)
+      : this._albumIndex--;
+    this._trackIndex = this.playlist.albums[this._albumIndex].tracks.length - 1;
   }
 
   prevTrack(): void {
-    if (this.album?.isFirstTrack(this._trackIndex)) {
-      if (this.playlist.isFirstAlbum(this._albumIndex)) {
-        this._albumIndex = this.playlist.albums.length - 1;
-      } else {
-        this._albumIndex--;
-      }
-
-      this.album = this.playlist.albums[this._albumIndex];
-      this._trackIndex = this.album.tracks.length - 1;
-    } else {
-      this._trackIndex--;
-    }
-
-    this.album = this.playlist.albums[this._albumIndex];
-    this.trackUrl = this.album.getUrlFromIndex(this._trackIndex);
+    this.album?.isFirstTrack(this._trackIndex)
+      ? this.prevAlbum()
+      : this._trackIndex--;
   }
 }

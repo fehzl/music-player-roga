@@ -60,6 +60,9 @@ interface PlayerType {
 
   play(): void;
   pause(): void;
+  nextAlbum(): void;
   nextTrack(): void;
+  prevAlbum(): void;
   prevTrack(): void;
+
 }
